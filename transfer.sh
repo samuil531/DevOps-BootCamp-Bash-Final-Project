@@ -50,7 +50,7 @@ help()
         Usage: 
         -d  Download file from https://transfer.sh/{particular folder} 
         -h  Show the help about attributes 
-	     -v  Get the tool version 
+	-v  Get the tool version 
     
         Examples: 
           ./transfer.sh test.txt               - upload single file	  
@@ -60,7 +60,8 @@ help()
 }
 
 #main
-main() {
+main()
+{
   if [[ $1 == "-d" ]]; then
     singleDownload "$@"
   elif [[ $1 == "-v" ]]; then

@@ -21,7 +21,7 @@ httpSingleUpload()
     file=$i
     echo -e " Uploading "$i""
     response=$(curl --progress-bar --upload-file "$1" "https://transfer.sh/$file") || { echo -e "Failure!"; return 1;}
-    echo -e "Transfer File URL: "$response" \n" 
+    echo -e "Transfer File URL: "$response"" 
   done
 }
 
@@ -40,7 +40,7 @@ singleDownload()
 #Prints
 printDownloadResponse() 
 {
-  echo -e " Success!"
+  echo -e "Success!"
 }
 
 #help

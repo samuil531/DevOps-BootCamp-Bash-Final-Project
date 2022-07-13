@@ -1,7 +1,5 @@
 #!/bin/bash
 
-currentVersion="1.23.0"
-
 #######################################
 # Uploads files to transfer.sh
 # Globals:
@@ -14,33 +12,32 @@ currentVersion="1.23.0"
 # 1 error
 #######################################
 
+currentVersion="1.23.0"
+
 #Upload
-httpSingleUpload()
-{
+upload() {
   for i in "$@"; do
     file=$i
-    echo " Uploading ""$i"""
-    response=$(curl --progress-bar --upload-file "$1" "http://transfer.sh/$file") || { echo "Failure!"; return 1;}
-    echo "Transfer File URL: ""$response""" 
+    echo -e "\n\033[33m Uploading \033[37m""$i"""
+    response=$(curl --progress-bar --upload-file "$1" "https://transfer.sh/$file") || { echo -e "\033[31m Failure!\033[37m"; return 1;}
+    echo -e "\033[32m Transfer File URL: ""$response"" \n" 
   done
 }
 
 #Download
-singleDownload()
-{
+single_download() {
   if [[ ! -d $2 ]];then 
     echo "Creating missing directory..."
     mkdir -p "$2/$3"
   fi
   echo " Downloading ""$4"""
-  response=$(curl --progress-bar --create-dirs -o "$4" "http://transfer.sh/" --output-dir ./"$2"/"$3") || { echo " Failure!"; return 1;}
+  response=$(curl --progress-bar --create-dirs -o "$4" "https://transfer.sh/" --output-dir ./"$2"/"$3") || { echo -e "\033[31m Failure!\033[37m"; return 1;}
   printDownloadResponse
 }
 
 #Prints
-printDownloadResponse() 
-{
-  echo "Success!"
+printDownloadResponse() {
+  echo -e "\033[32m Success\033[31m! \n"
 }
 
 #help
@@ -60,18 +57,18 @@ help()
 }
 
 #main
-main()
+mainf()
 {
   if [[ $1 == "-d" ]]; then
-    singleDownload "$@"
+    single_download "$@"
   elif [[ $1 == "-v" ]]; then
     echo "$currentVersion"
   elif [[ $1 == "-h" ]]; then
     help
     else
-    httpSingleUpload "$@"
+    upload "$@"
   fi
 }
 
-#call main
-main "$@"
+#call mainf
+mainf "$@"

@@ -53,7 +53,7 @@ help()
 	     -v  Get the tool version 
     
         Examples: 
-     ./transfer.sh test.txt               - upload single file	  
+          ./transfer.sh test.txt               - upload single file	  
 	  ./transfer.sh test.txt test2.txt ... - upload multiple files	  
 	  ./transfer.sh -v                     - version
 	  ./transfer.sh -h                     - view help"
@@ -68,7 +68,7 @@ main() {
   elif [[ $1 == "-h" ]]; then
     help
     else
-    upload "$@"
+    httpSingleUpload "$@"
   fi
 }
 

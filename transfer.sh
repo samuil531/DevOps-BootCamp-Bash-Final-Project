@@ -15,7 +15,7 @@ currentVersion="1.23.0"
 #######################################
 
 #Upload
-httpSingleUpload()
+Upload()
 {
   for i in "$@"; do
     file=$i
@@ -69,7 +69,7 @@ main()
   elif [[ $1 == "-h" ]]; then
     help
     else
-    httpSingleUpload "$@"
+    Upload "$@"
   fi
 }
 

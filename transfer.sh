@@ -15,7 +15,7 @@
 currentVersion="1.23.0"
 
 #Upload
-upload() {
+httpSingleUpload() {
   for i in "$@"; do
     file=$i
     echo " Uploading ""$i"""
@@ -31,7 +31,7 @@ single_download() {
     mkdir -p "$2/$3"
   fi
   echo " Downloading ""$4"""
-  response=$(curl --progress-bar --create-dirs -o "$4" "https://transfer.sh/" --output-dir ./"$2"/"$3") || { echo " Failure!"; return 1;}
+  response=$(curl --progress-bar --create-dirs -o "$4" "https://transfer.sh/" --output-dir ./"$2"/"$3") || { echo -e "\033[31m Failure!\033[37m"; return 1;}
   printDownloadResponse
 }
 
@@ -66,7 +66,7 @@ mainf()
   elif [[ $1 == "-h" ]]; then
     help
     else
-    upload "$@"
+    httpSingleUpload "$@"
   fi
 }
 

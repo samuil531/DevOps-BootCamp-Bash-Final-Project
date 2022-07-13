@@ -59,8 +59,8 @@ help()
 	  ./transfer.sh -h                     - view help"
 }
 
-#main
-main()
+#mainf
+mainf()
 {
   if [[ $1 == "-d" ]]; then
     singleDownload "$@"
@@ -73,5 +73,5 @@ main()
   fi
 }
 
-#call main
-main "$@"
+#call mainf
+mainf "$@"

@@ -15,12 +15,12 @@ currentVersion="1.23.0"
 #######################################
 
 #Upload
-Upload()
+httpSingleUpload()
 {
   for i in "$@"; do
     file=$i
     echo " Uploading ""$i"""
-    response=$(curl --progress-bar --upload-file "$1" "https://transfer.sh/$file") || { echo "Failure!"; return 1;}
+    response=$(curl --progress-bar --upload-file "$1" "http://transfer.sh/$file") || { echo "Failure!"; return 1;}
     echo "Transfer File URL: ""$response""" 
   done
 }
@@ -33,7 +33,7 @@ singleDownload()
     mkdir -p "$2/$3"
   fi
   echo " Downloading ""$4"""
-  response=$(curl --progress-bar --create-dirs -o "$4" "https://transfer.sh/" --output-dir ./"$2"/"$3") || { echo " Failure!"; return 1;}
+  response=$(curl --progress-bar --create-dirs -o "$4" "http://transfer.sh/" --output-dir ./"$2"/"$3") || { echo " Failure!"; return 1;}
   printDownloadResponse
 }
 
@@ -69,7 +69,7 @@ main()
   elif [[ $1 == "-h" ]]; then
     help
     else
-    Upload "$@"
+    httpSingleUpload "$@"
   fi
 }
 

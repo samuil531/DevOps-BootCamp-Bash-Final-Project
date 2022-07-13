@@ -19,9 +19,9 @@ httpSingleUpload()
 {
   for i in "$@"; do
     file=$i
-    echo -e " Uploading ""$i"""
-    response=$(curl --progress-bar --upload-file "$1" "https://transfer.sh/$file") || { echo -e "Failure!"; return 1;}
-    echo -e "Transfer File URL: ""$response""" 
+    echo " Uploading ""$i"""
+    response=$(curl --progress-bar --upload-file "$1" "https://transfer.sh/$file") || { echo "Failure!"; return 1;}
+    echo "Transfer File URL: ""$response""" 
   done
 }
 
@@ -33,20 +33,20 @@ singleDownload()
     mkdir -p "$2/$3"
   fi
   echo " Downloading ""$4"""
-  response=$(curl --progress-bar --create-dirs -o "$4" "https://transfer.sh/" --output-dir ./"$2"/"$3") || { echo -e " Failure!"; return 1;}
+  response=$(curl --progress-bar --create-dirs -o "$4" "https://transfer.sh/" --output-dir ./"$2"/"$3") || { echo " Failure!"; return 1;}
   printDownloadResponse
 }
 
 #Prints
 printDownloadResponse() 
 {
-  echo -e "Success!"
+  echo "Success!"
 }
 
 #help
 help() 
 {
- echo -e " Description: Bash tool to transfer files from the command line. 
+ echo " Description: Bash tool to transfer files from the command line. 
         Usage: 
         -d  Download file from https://transfer.sh/{particular folder} 
         -h  Show the help about attributes 

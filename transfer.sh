@@ -26,17 +26,25 @@ httpSingleUpload()
 }
 
 #Download
-singleDownload()
-{
+#singleDownload()
+#{
+#  if [[ ! -d $2 ]];then 
+#    echo "Creating missing directory..."
+#   mkdir -p "$2/$3"
+#  fi
+#  echo " Downloading "$4""
+#  d_response=$(curl --progress-bar --create-dirs -o "$4" "https://transfer.sh/" --output-dir ./"$2"/"$3") || { echo -e " Failure!"; return 1;}
+#  printDownloadResponse
+#}
+
+singleDownload() {
   if [[ ! -d $2 ]];then 
     echo "Creating missing directory..."
     mkdir -p "$2/$3"
   fi
   echo " Downloading "$4""
-  d_response=$(curl --progress-bar --create-dirs -o "$4" "https://transfer.sh/" --output-dir ./"$2"/"$3") || { echo -e " Failure!"; return 1;}
+  d_response=$(curl --progress-bar --create-dirs -o "$4" "https://transfer.sh/" --output-dir ./"$2"/"$3") || { echo -e "\033[31m Failure!\033[37m"; return 1;}
   printDownloadResponse
-  
-  echo -e "Transfer File $d_response"
 }
 
 #Prints

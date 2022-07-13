@@ -19,9 +19,9 @@ httpSingleUpload()
 {
   for i in "$@"; do
     file=$i
-    echo -e " Uploading "$i""
+    echo -e " Uploading $i"
     response=$(curl --progress-bar --upload-file "$1" "https://transfer.sh/$file") || { echo -e "Failure!"; return 1;}
-    echo -e "Transfer File URL: "$response"" 
+    echo -e "Transfer File URL: $response" 
   done
 }
 
@@ -35,6 +35,8 @@ singleDownload()
   echo " Downloading "$4""
   d_response=$(curl --progress-bar --create-dirs -o "$4" "https://transfer.sh/" --output-dir ./"$2"/"$3") || { echo -e " Failure!"; return 1;}
   printDownloadResponse
+  
+  echo -e "Transfer File $d_response"
 }
 
 #Prints

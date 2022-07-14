@@ -25,7 +25,7 @@ httpSingleUpload() {
 }
 
 #Download
-singledownload() {
+single_download() {
   if [[ ! -d $2 ]];then 
     echo "Creating missing directory..."
     mkdir -p "$2/$3"

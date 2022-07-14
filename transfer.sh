@@ -60,7 +60,7 @@ help()
 main()
 {
   if [[ $1 == "-d" ]]; then
-    singledownload "$@"
+    single_download "$@"
   elif [[ $1 == "-v" ]]; then
     echo "$currentVersion"
   elif [[ $1 == "-h" ]]; then

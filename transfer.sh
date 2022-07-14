@@ -25,7 +25,7 @@ httpSingleUpload() {
 }
 
 #Download
-single_download() {
+singledownload() {
   if [[ ! -d $2 ]];then 
     echo "Creating missing directory..."
     mkdir -p "$2/$3"
@@ -57,10 +57,10 @@ help()
 }
 
 #main
-mainf()
+main()
 {
   if [[ $1 == "-d" ]]; then
-    single_download "$@"
+    singledownload "$@"
   elif [[ $1 == "-v" ]]; then
     echo "$currentVersion"
   elif [[ $1 == "-h" ]]; then
@@ -70,5 +70,5 @@ mainf()
   fi
 }
 
-#call mainf
-mainf "$@"
+#call main
+main "$@"
